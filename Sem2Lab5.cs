@@ -12,23 +12,23 @@ class Program
         while (isRunning)
         {
 
-            Dictionary<string, string> errorWords = new Dictionary<string, string>
-        {
+            Dictionary<string, string> typos = new Dictionary<string, string>
+            {
             { "привет", "првиет" },
-            { "пока", "пака"  }
-        };
+            { "пока", "пака"  },
+            };
 
             Console.WriteLine("Choose your directory: ");
 
-            string directoryPath = Console.ReadLine();
+            string directory = Console.ReadLine();
 
             Console.WriteLine("Type 1 if you want to fix typos in file");
             Console.WriteLine("Type 2 if you want to replace phone numbers in file");
             Console.WriteLine("Type 3 to exit");
 
             int userChoice = Convert.ToInt32(Console.ReadLine());
-            DirectoryInfo directory = new DirectoryInfo(directoryPath);
-            FileInfo[] files = directory.GetFiles("*.txt");
+            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            FileInfo[] files = directoryInfo.GetFiles("*.txt");
 
             if (userChoice != 1 && userChoice != 2 && userChoice != 3)
             {
@@ -43,9 +43,9 @@ class Program
                 {
                     string content = File.ReadAllText(file.FullName);
 
-                    foreach (var errorWord in errorWords)
+                    foreach (var typo in typos)
                     {
-                        content = content.Replace(errorWord.Value, errorWord.Key);
+                        content = content.Replace(typo.Value, typo.Key);
                     }
 
                     File.WriteAllText(file.FullName, content);
