@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 
 class Program
@@ -59,8 +56,10 @@ class Program
                 foreach (var file in files)
                 {
                     string content = File.ReadAllText(file.FullName);
+                    string pattern = @"\((\d{3})\) (\d{3})-(\d{2})-(\d{2})";
+                    string replacement = "+380 12 $2 $3 $4";
 
-                    content = Regex.Replace(content, @"\(\d{3}\) \d{3}-\d{2}-\d{2}", "+380 12 345 67 89");
+                    content = Regex.Replace(content, pattern, replacement);
 
                     File.WriteAllText(file.FullName, content);
                 }
@@ -68,7 +67,7 @@ class Program
                 Console.WriteLine("Phone numbers have been changed :D ");
             }
 
-            if (userChoice == 3)
+            if (userChoice == 3)    
             {
                 Console.WriteLine("death :D");
                 Environment.Exit(0);
