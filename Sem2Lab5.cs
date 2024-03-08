@@ -4,9 +4,7 @@ class Program
 {
     static void Main()
     {
-        bool isRunning = true;
-
-        while (isRunning)
+        while (true)
         {
 
             Dictionary<string, string> typos = new Dictionary<string, string>
