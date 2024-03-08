@@ -11,8 +11,8 @@ class Program
 
             Dictionary<string, string> typos = new Dictionary<string, string>
             {
-            { "привет", "првиет" },
-            { "пока", "пака"  },
+                { "привет", "првиет" },
+                { "пока", "пака"  },
             };
 
             Console.WriteLine("Choose your directory: ");
